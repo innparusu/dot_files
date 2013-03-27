@@ -1,0 +1,64 @@
+\documentclass[7pt]{jarticle}
+\usepackage[dvipdfm]{graphicx}
+\usepackage{ascmac}
+\usepackage{here}
+\usepackage{txfonts}
+\usepackage{listings, jlisting}
+\renewcommand{\lstlistingname}{ソース}
+\lstset{ 
+    language={C},
+    basicstyle={\ttfamily\scriptsize}, 
+    identifierstyle={\scriptsize}, 
+    ndkeywordstyle={\scriptsize}, 
+    stringstyle={\scriptsize\ttfamily}, 
+    commentstyle={\scriptsize\ttfamily},
+    frame={trBL}, 
+    breaklines=true, 
+    columns=[l]{fullflexible}, 
+    tabsize=2,
+    numbers=left, 
+    xrightmargin=0zw, 
+    xleftmargin=3zw, 
+    numberstyle={\scriptsize}, 
+    stepnumber=1, 
+    numbersep=1zw,
+    morecomment=[l]{//} 
+}
+
+%本文領域を広め（空白箇所マージン領域を小さめ）に設定
+\setlength{\textwidth}{179mm}
+\setlength{\textheight}{249mm}
+\setlength{\topmargin}{-2cm}
+\setlength{\oddsidemargin}{-1cm}
+\setlength{\evensidemargin}{-1cm}
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace*{200truept}
+        {\Huge\bf }\\ % タイトル
+        \vspace*{10truept}
+        \hspace*{200truept}
+        {\Large }\\ % サブタイトル（なければコメントアウト）
+        \vspace*{320truept}
+    \end{center}
+    \begin{flushleft}
+        {\Large
+            \hspace*{300truept}
+            所　属　：\\
+            \hspace*{300truept}
+            学籍番号：\\
+            \hspace*{300truept}
+            氏　名　：\\
+        }
+    \end{flushleft}
+\end{titlepage}
+\pagenumbering{roman}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+\lstinputlisting[label=src1,caption=]{}
+\begin{itemize}
+    \item
+\end{itemize}
+\end{document}
