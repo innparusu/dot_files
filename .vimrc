@@ -31,6 +31,7 @@ NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'dag/vim2hs'
 NeoBundle 'ujihisa/neco-ghc'
 NeoBundle 'tpope/vim-endwise'
+NeoBundle 'scrooloose/syntastic'
 
 " カラースキーム
 "
@@ -94,7 +95,10 @@ set viewoptions-=options
 "テンプレ設定
 autocmd BufNewFile *.rb 0r ~/.vim/templates/ruby.rb "rubyのテンプレ
 autocmd BufNewFile *.tex 0r ~/.vim/templates/tex.tex "texのテンプレ
+autocmd BufNewFile *.sh 0r ~/.vim/templates/sh.sh ".shのテンプレ
 
+"texのファイル構成
+autocmd BufNewFile report.tex !cp ~/.vim/templates/Makefile ~/.vim/templates/jlisting.sty ./
 
 " ファイル名と内容によってファイルタイプを判別し、ファイルタイププラグインを有効にする
 filetype indent plugin on
@@ -149,10 +153,10 @@ set mouse=a
 set cmdheight=2
 
 " 行番号を表示
-"set number
+set number
 
 " 相対番号を表示
-set relativenumber
+" set relativenumber
 
 " キーコードはすぐにタイムアウト。マッピングはタイムアウトしない
 set notimeout ttimeout ttimeoutlen=200
@@ -168,13 +172,13 @@ set shiftwidth=2
 
 "tabキーの空白の数
 set softtabstop=2
-
+  
 "tabキーの代わりに半角スペースを使う
 set expandtab
 
-" タブ文字を2文字分の幅で表示する。
+" タブ文字を文字分の幅で表示する。
 set tabstop=4
-
+  
 " マッピング
 " Yの動作をDやCと同じにする
 map Y y$
@@ -264,3 +268,7 @@ let g:ref_refe_cmd = "~/Documents/ruby/rubyrefm/ruby-refm-1.9.3-dynamic-20120829
 
 "endwise.vim
 "let g:endwise_no_mappings=1
+"
+"syntastic
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=2

@@ -1,18 +1,6 @@
 #!/bin/zsh
 export LANG=ja_JP.UTF-8
 
-#パス設定
-PATH=/usr/local/bin:$PATH
-PATH=/usr/texbin:$PATH
-#rbenv
-PATH=$HOME/.rbenv/bin:$PATH
-eval "$(rbenv init -)"
-case ${UID} in
-0)
-    LANG=C
-    ;;
-esac
-
 ## Default shell configuration
 # set prompt
 autoload colors
@@ -109,4 +97,5 @@ RPROMPT="[$PINK%~$DEFAULT]"
 #setopt prompt_percent
 ### コピペしやすいようにコマンド実行後は右プロンプトを消す
 #setopt transient_rprompt
-
+#PATHの重複を消す
+typeset -U path
