@@ -27,11 +27,13 @@ NeoBundle 'Shougo/vimshell'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'vim-scripts/TwitVim'
-NeoBundle 'Lokaltog/vim-powerline'
+"NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'bling/vim-airline'
 NeoBundle 'dag/vim2hs'
 NeoBundle 'ujihisa/neco-ghc'
 NeoBundle 'tpope/vim-endwise'
-NeoBundle 'scrooloose/syntastic'
+"NeoBundle 'scrooloose/syntastic'
+NeoBundle 'tpope/vim-rails'
 
 " カラースキーム
 "
@@ -172,13 +174,13 @@ set shiftwidth=2
 
 "tabキーの空白の数
 set softtabstop=2
-  
+
 "tabキーの代わりに半角スペースを使う
 set expandtab
 
 " タブ文字を文字分の幅で表示する。
 set tabstop=4
-  
+
 " マッピング
 " Yの動作をDやCと同じにする
 map Y y$
