@@ -28,7 +28,8 @@ NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'vim-scripts/TwitVim'
 "NeoBundle 'Lokaltog/vim-powerline'
-NeoBundle 'bling/vim-airline'
+"NeoBundle 'bling/vim-airline'
+NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'dag/vim2hs'
 NeoBundle 'ujihisa/neco-ghc'
 NeoBundle 'tpope/vim-endwise'
@@ -170,17 +171,21 @@ set pastetoggle=<F11>
 set autoindent
 
 " インデント時の空白数
-set shiftwidth=2
+set shiftwidth=4
 
 "tabキーの空白の数
-set softtabstop=2
+set softtabstop=4
+
+".rhtml, .rbでタブ幅を2に変更
+au BufNewFile,BufRead *.rhtml set nowrap tabstop=2 shiftwidth=2
+au BufNewFile,BufRead *.rb    set nowrap tabstop=2 shiftwidth=2
 
 "tabキーの代わりに半角スペースを使う
 set expandtab
 
 " タブ文字を文字分の幅で表示する。
 set tabstop=4
-
+ 
 " マッピング
 " Yの動作をDやCと同じにする
 map Y y$
@@ -222,8 +227,6 @@ let g:neocomplcache_enable_at_startup = 1 " 起動時に有効化
 let g:neocomplcache_enable_underbar_completion = 1 " _の補完を有効化
 
 " neosnippet 
-" snippetの配置場所
-"
 " スニペット呼び出し
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -274,3 +277,9 @@ let g:ref_refe_cmd = "~/Documents/ruby/rubyrefm/ruby-refm-1.9.3-dynamic-20120829
 "syntastic
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=2
+
+"lightline
+"colorschemeをsolarized
+let g:lightline = {
+    \ 'colorscheme' : 'solarized' ,
+    \}
