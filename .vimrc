@@ -10,7 +10,8 @@ endif
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/neocomplcache'
+"NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet' 
 NeoBundle 'Shougo/neocomplcache-rsense', {
             \ 'autoload' : {
@@ -35,6 +36,7 @@ NeoBundle 'ujihisa/neco-ghc'
 NeoBundle 'tpope/vim-endwise'
 "NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tpope/vim-rails'
+NeoBundle 'sophacles/vim-processing'
 
 " カラースキーム
 "
@@ -222,9 +224,9 @@ au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
 "プラグイン系
-" neocomplcache
-let g:neocomplcache_enable_at_startup = 1 " 起動時に有効化
-let g:neocomplcache_enable_underbar_completion = 1 " _の補完を有効化
+" neocomplete
+let g:neocomplete#enable_at_startup = 1 " 起動時に有効化
+let g:neocomplete#enable_underbar_completion = 1 " _の補完を有効化
 
 " neosnippet 
 " スニペット呼び出し
@@ -283,3 +285,10 @@ let g:syntastic_auto_loc_list=2
 let g:lightline = {
     \ 'colorscheme' : 'solarized' ,
     \}
+
+"quickrunでprocessingを実行
+let g:quickrun_config = {}
+let g:quickrun_config.processing =  {
+      \     'command': 'processing-java',
+      \     'exec': '%c --sketch=$PWD/ --output=~/Library/Processing --run --force',
+      \   }
