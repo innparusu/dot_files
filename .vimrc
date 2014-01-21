@@ -29,15 +29,16 @@ NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'vim-scripts/TwitVim'
 "NeoBundle 'Lokaltog/vim-powerline'
-"NeoBundle 'bling/vim-airline'
-NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'bling/vim-airline'
+"NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'dag/vim2hs'
 NeoBundle 'ujihisa/neco-ghc'
 NeoBundle 'tpope/vim-endwise'
 "NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'sophacles/vim-processing'
-
+"NeoBundle 'Yggdroot/indentLine'
+NeoBundle 'nathanaelkane/vim-indent-guides'
 " カラースキーム
 "
 NeoBundle 'altercation/vim-colors-solarized'
@@ -178,21 +179,24 @@ set shiftwidth=4
 "tabキーの空白の数
 set softtabstop=4
 
-".rhtml, .rbでタブ幅を2に変更
-au BufNewFile,BufRead *.rhtml set nowrap tabstop=2 shiftwidth=2
-au BufNewFile,BufRead *.rb    set nowrap tabstop=2 shiftwidth=2
-
 "tabキーの代わりに半角スペースを使う
 set expandtab
 
 " タブ文字を文字分の幅で表示する。
 set tabstop=4
- 
+
+".rhtml, .rbでタブ幅を2に変更
+au BufNewFile,BufRead *.rhtml set nowrap tabstop=2 shiftwidth=2 softtabstop=2
+au BufNewFile,BufRead *.rb    set nowrap tabstop=2 shiftwidth=2 softtabstop=2
+"
+"python" 
+autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+
 " マッピング
 " Yの動作をDやCと同じにする
 map Y y$
 
-" <C-L>で検索後の強調表示を解除する
+" <C-L>で検索後の強調表示を解除す2
 nnoremap <C-L> :nohl<CR><C-L>
 
 "ファイルタイプ設定をonにする
@@ -254,7 +258,7 @@ nnoremap ,tn :<C-u>NextTwitter<CR>
 
 autocmd FileType twitvim call s:twitvim_my_settings()
 function! s:twitvim_my_settings()
-  set nowrap
+    set nowrap
 endfunction
 
 "辞書の設定
@@ -263,15 +267,15 @@ endfunction
 autocmd FileType text call ref#register_detection('_', 'webdict') 
 " yahoo_dict と wikipedia を使う
 let g:ref_source_webdict_sites = {
-      \ 'yahoo_dict' : {'url' : 'http://dic.search.yahoo.co.jp/search?p=%s', 'line' : '47'},
-      \ 'wikipedia'  : {'url' : 'http://ja.wikipedia.org/wiki/%s',},}
+            \ 'yahoo_dict' : {'url' : 'http://dic.search.yahoo.co.jp/search?p=%s', 'line' : '47'},
+            \ 'wikipedia'  : {'url' : 'http://ja.wikipedia.org/wiki/%s',},}
 " webdict の辞書のデフォルトはyahoo_dict
 let g:ref_source_webdict_sites.default = 'yahoo_dict'
 " テキストブラウザはw3mを使う
 let g:ref_source_webdict_cmd = 'w3m -dump %s'
 
 "ruby ref.vim設定
-let g:ref_refe_cmd = "~/Documents/ruby/rubyrefm/ruby-refm-1.9.3-dynamic-20120829/refe-1_9_3"
+let g:ref_refe_cmd = "~/Documents/ruby/nrubyrefm/ruby-refm-1.9.3-dynamic-20120829/refe-1_9_3"
 
 "endwise.vim
 "let g:endwise_no_mappings=1
@@ -283,12 +287,27 @@ let g:syntastic_auto_loc_list=2
 "lightline
 "colorschemeをsolarized
 let g:lightline = {
-    \ 'colorscheme' : 'solarized' ,
-    \}
+            \ 'colorscheme' : 'solarized' ,
+            \}
 
 "quickrunでprocessingを実行
 let g:quickrun_config = {}
 let g:quickrun_config.processing =  {
-      \     'command': 'processing-java',
-      \     'exec': '%c --sketch=$PWD/ --output=~/Library/Processing --run --force',
-      \   }
+            \     'command': 'processing-java',
+            \     'exec': '%c --sketch=$PWD/ --output=~/Library/Processing --run --force',
+            \   }
+
+"vim-indent-guides
+let g:indent_guides_enable_on_vim_startup=1
+" ガイドをスタートするインデントの量
+let g:indent_guides_start_level=1
+" 自動カラーを無効にする
+let g:indent_guides_auto_colors=0
+" 奇数インデントのカラー
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=1
+" 偶数インデントのカラー
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=4
+" ガイドの幅
+let g:indent_guides_guide_size = 1
+" ガイド幅をインデント幅に合わせる
+"let g:indent_guides_guide_size = &tabstop

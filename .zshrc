@@ -92,7 +92,7 @@ export LS_COLORS='di=36:ln=35:so=32:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw
 export PTEX_IN_FILTER=/usr/local/bin/nkf
 
 local GREEN=$'%{\e[0;32m%}'
-local PINK=$'%{\e[0;35m%}'
+local PINK=$'%{\e[0;35m%}' 
 local DEFAULT=$'%{\e[0;m%}'
 
 PROMPT="$GREEN%n @ %m$DEFAULT %(!.#.$) "
@@ -105,3 +105,15 @@ RPROMPT="[$PINK%~$DEFAULT]"
 #setopt transient_rprompt
 #PATHの重複を消す
 typeset -U path
+
+#os ex2.2
+#touch ~/.dir_history
+#function cd {
+#    builtin cd "$@"
+#    echo $PWD > ~/.dir_history
+#}
+#DIR=`cat ~/.dir_history`
+#cd $DIR
+
+#JPF
+JPF_HOME=/Users/e125716/Workspace/java/jpf/jpf-core
