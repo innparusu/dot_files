@@ -10,9 +10,9 @@ endif
 NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler'
-"NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet' 
+NeoBundle "Shougo/neosnippet-snippets"
 NeoBundle 'Shougo/neocomplcache-rsense', {
             \ 'autoload' : {
             \     'filetypes' : ['ruby']
@@ -241,7 +241,6 @@ set completeopt-=preview
 
 " vimshell setting
 let g:vimshell_interactive_update_time = 10
-let g:vimshell_prompt = $USERNAME."% "
 
 " vimshell map
 nnoremap <silent> vs :VimShell<CR>
@@ -275,7 +274,7 @@ let g:ref_source_webdict_sites.default = 'yahoo_dict'
 let g:ref_source_webdict_cmd = 'w3m -dump %s'
 
 "ruby ref.vim設定
-let g:ref_refe_cmd = "~/Documents/ruby/nrubyrefm/ruby-refm-1.9.3-dynamic-20120829/refe-1_9_3"
+let g:ref_refe_cmd = "~/Documents/ruby/rubyrefm/ruby-refm-1.9.3-dynamic-20120829/refe-1_9_3"
 
 "endwise.vim
 "let g:endwise_no_mappings=1
