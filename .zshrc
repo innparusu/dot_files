@@ -116,4 +116,4 @@ typeset -U path
 #cd $DIR
 
 #JPF
-JPF_HOME=/Users/e125716/Workspace/java/jpf/jpf-core
+JPF_HOME=~/Workspace/java/jpf/jpf-core
