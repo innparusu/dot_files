@@ -39,9 +39,102 @@ NeoBundle 'tpope/vim-rails'
 NeoBundle 'sophacles/vim-processing'
 "NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'nathanaelkane/vim-indent-guides'
+" MarkDown preview
+NeoBundle 'kannokanno/previm'
 " カラースキーム
 "
 NeoBundle 'altercation/vim-colors-solarized'
+
+
+"プラグイン系 設定
+" neocomplete
+let g:neocomplete#enable_at_startup = 1 " 起動時に有効化
+let g:neocomplete#enable_underbar_completion = 1 " _の補完を有効化
+
+" neosnippet 
+" スニペット呼び出し
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+"プレビュー
+set completeopt-=preview
+
+" vimshell setting
+let g:vimshell_interactive_update_time = 10
+
+" vimshell map
+nnoremap <silent> vs :VimShell<CR>
+nnoremap <silent> vsc :VimShellCreate<CR>
+nnoremap <silent> vp :VimShellPop<CR>
+
+" twitvim
+let twitvim_count = 40
+nnoremap ,tp :<C-u>PosttoTwitter<CR>
+nnoremap ,tf :<C-u>FriendsTwitter<CR><C-w>j
+nnoremap ,tu :<C-u>UserTwitter<CR><C-w>j
+nnoremap ,tr :<C-u>RepliesTwitter<CR><C-w>j
+nnoremap ,tn :<C-u>NextTwitter<CR>
+
+autocmd FileType twitvim call s:twitvim_my_settings()
+function! s:twitvim_my_settings()
+    set nowrap
+endfunction
+
+" 辞書の設定
+" ref.vim の webdict の設定
+" FileTypeがtextならKでwebdictを使う
+autocmd FileType text call ref#register_detection('_', 'webdict') 
+" yahoo_dict と wikipedia を使う
+let g:ref_source_webdict_sites = {
+            \ 'yahoo_dict' : {'url' : 'http://dic.search.yahoo.co.jp/search?p=%s', 'line' : '47'},
+            \ 'wikipedia'  : {'url' : 'http://ja.wikipedia.org/wiki/%s',},}
+" webdict の辞書のデフォルトはyahoo_dict
+let g:ref_source_webdict_sites.default = 'yahoo_dict'
+" テキストブラウザはw3mを使う
+let g:ref_source_webdict_cmd = 'w3m -dump %s'
+
+"ruby ref.vim設定
+let g:ref_refe_cmd = "~/Documents/ruby/rubyrefm/ruby-refm-1.9.3-dynamic-20120829/refe-1_9_3"
+
+"endwise.vim
+"let g:endwise_no_mappings=1
+"
+"syntastic
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=2
+
+"lightline
+"colorschemeをsolarized
+let g:lightline = {
+            \ 'colorscheme' : 'solarized' ,
+            \}
+
+"quickrunでprocessingを実行
+let g:quickrun_config = {}
+let g:quickrun_config.processing =  {
+            \     'command': 'processing-java',
+            \     'exec': '%c --sketch=$PWD/ --output=~/Library/Processing --run --force',
+            \   }
+
+"vim-indent-guides
+let g:indent_guides_enable_on_vim_startup=1
+" ガイドをスタートするインデントの量
+let g:indent_guides_start_level=1
+" 自動カラーを無効にする
+let g:indent_guides_auto_colors=0
+" 奇数インデントのカラー
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=1
+" 偶数インデントのカラー
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=4
+" ガイドの幅
+let g:indent_guides_guide_size = 1
+" ガイド幅をインデント幅に合わせる
+"let g:indent_guides_guide_size = &tabstop
+"
+"previm
+let g:previm_open_cmd = "open -a safari"
+
+
+
 
 filetype plugin on
 filetype indent on
@@ -77,6 +170,7 @@ imap "" ""<Left>
 imap <> <><Left>
 imap '' ''<Left>
 
+" ファイルの前回閉じた時の場所を記憶
 if has("autocmd")
   autocmd BufReadPost *
         \ if line("'\"") > 0 && line ("'\"") <= line("$") |
@@ -185,11 +279,14 @@ set expandtab
 " タブ文字を文字分の幅で表示する。
 set tabstop=4
 
-".rhtml, .rbでタブ幅を2に変更
+".rhtml, .rb, .html.erb, .htmlでタブ幅を2に変更
 au BufNewFile,BufRead *.rhtml set nowrap tabstop=2 shiftwidth=2 softtabstop=2
 au BufNewFile,BufRead *.rb    set nowrap tabstop=2 shiftwidth=2 softtabstop=2
+au BufNewFile,BufRead *.html.erb set nowrap tabstop=2 shiftwidth=2 softtabstop=2
+au BufNewFile,BufRead *.html set nowrap tabstop=2 shiftwidth=2 softtabstop=2
+au BufNewFile,BufRead *.scss set nowrap tabstop=2 shiftwidth=2 softtabstop=2
 "
-"python" 
+"python" でのインデント設定
 autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 
 " マッピング
@@ -227,86 +324,3 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vspli
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
-"プラグイン系
-" neocomplete
-let g:neocomplete#enable_at_startup = 1 " 起動時に有効化
-let g:neocomplete#enable_underbar_completion = 1 " _の補完を有効化
-
-" neosnippet 
-" スニペット呼び出し
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-"プレビュー
-set completeopt-=preview
-
-" vimshell setting
-let g:vimshell_interactive_update_time = 10
-
-" vimshell map
-nnoremap <silent> vs :VimShell<CR>
-nnoremap <silent> vsc :VimShellCreate<CR>
-nnoremap <silent> vp :VimShellPop<CR>
-
-" twitvim
-let twitvim_count = 40
-nnoremap ,tp :<C-u>PosttoTwitter<CR>
-nnoremap ,tf :<C-u>FriendsTwitter<CR><C-w>j
-nnoremap ,tu :<C-u>UserTwitter<CR><C-w>j
-nnoremap ,tr :<C-u>RepliesTwitter<CR><C-w>j
-nnoremap ,tn :<C-u>NextTwitter<CR>
-
-autocmd FileType twitvim call s:twitvim_my_settings()
-function! s:twitvim_my_settings()
-    set nowrap
-endfunction
-
-"辞書の設定
-" ref.vim の webdict の設定
-" FileTypeがtextならKでwebdictを使う
-autocmd FileType text call ref#register_detection('_', 'webdict') 
-" yahoo_dict と wikipedia を使う
-let g:ref_source_webdict_sites = {
-            \ 'yahoo_dict' : {'url' : 'http://dic.search.yahoo.co.jp/search?p=%s', 'line' : '47'},
-            \ 'wikipedia'  : {'url' : 'http://ja.wikipedia.org/wiki/%s',},}
-" webdict の辞書のデフォルトはyahoo_dict
-let g:ref_source_webdict_sites.default = 'yahoo_dict'
-" テキストブラウザはw3mを使う
-let g:ref_source_webdict_cmd = 'w3m -dump %s'
-
-"ruby ref.vim設定
-let g:ref_refe_cmd = "~/Documents/ruby/rubyrefm/ruby-refm-1.9.3-dynamic-20120829/refe-1_9_3"
-
-"endwise.vim
-"let g:endwise_no_mappings=1
-"
-"syntastic
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=2
-
-"lightline
-"colorschemeをsolarized
-let g:lightline = {
-            \ 'colorscheme' : 'solarized' ,
-            \}
-
-"quickrunでprocessingを実行
-let g:quickrun_config = {}
-let g:quickrun_config.processing =  {
-            \     'command': 'processing-java',
-            \     'exec': '%c --sketch=$PWD/ --output=~/Library/Processing --run --force',
-            \   }
-
-"vim-indent-guides
-let g:indent_guides_enable_on_vim_startup=1
-" ガイドをスタートするインデントの量
-let g:indent_guides_start_level=1
-" 自動カラーを無効にする
-let g:indent_guides_auto_colors=0
-" 奇数インデントのカラー
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=1
-" 偶数インデントのカラー
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=4
-" ガイドの幅
-let g:indent_guides_guide_size = 1
-" ガイド幅をインデント幅に合わせる
-"let g:indent_guides_guide_size = &tabstop
