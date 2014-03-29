@@ -39,8 +39,8 @@ NeoBundle 'tpope/vim-rails'
 NeoBundle 'sophacles/vim-processing'
 "NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'nathanaelkane/vim-indent-guides'
-" MarkDown preview
 NeoBundle 'kannokanno/previm'
+NeoBundle 'open-browser.vim'
 " カラースキーム
 "
 NeoBundle 'altercation/vim-colors-solarized'
@@ -129,11 +129,6 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=4
 let g:indent_guides_guide_size = 1
 " ガイド幅をインデント幅に合わせる
 "let g:indent_guides_guide_size = &tabstop
-"
-"previm
-let g:previm_open_cmd = "open -a safari"
-
-
 
 
 filetype plugin on
