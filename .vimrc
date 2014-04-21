@@ -265,21 +265,24 @@ set autoindent
 " インデント時の空白数
 set shiftwidth=4
 
-"tabキーの空白の数
+" tabキーの空白の数
 set softtabstop=4
 
-"tabキーの代わりに半角スペースを使う
+" tabキーの代わりに半角スペースを使う
 set expandtab
 
 " タブ文字を文字分の幅で表示する。
 set tabstop=4
 
-".rhtml, .rb, .html.erb, .htmlでタブ幅を2に変更
+".rhtml, .rb, .html.erb, .html.haml .html .js .jadeでタブ幅を2に変更
 au BufNewFile,BufRead *.rhtml set nowrap tabstop=2 shiftwidth=2 softtabstop=2
 au BufNewFile,BufRead *.rb    set nowrap tabstop=2 shiftwidth=2 softtabstop=2
 au BufNewFile,BufRead *.html.erb set nowrap tabstop=2 shiftwidth=2 softtabstop=2
+au BufNewFile,BufRead *.html.haml set nowrap tabstop=2 shiftwidth=2 softtabstop=2
 au BufNewFile,BufRead *.html set nowrap tabstop=2 shiftwidth=2 softtabstop=2
 au BufNewFile,BufRead *.scss set nowrap tabstop=2 shiftwidth=2 softtabstop=2
+au BufNewFile,BufRead *.js set nowrap tabstop=2 shiftwidth=2 softtabstop=2
+au BufNewFile,BufRead *.jade set nowrap tabstop=2 shiftwidth=2 softtabstop=2
 "
 "python" でのインデント設定
 autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
