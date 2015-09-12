@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/local/bin/zsh
 export LANG=ja_JP.UTF-8
 
 case ${UID} in
@@ -60,6 +60,7 @@ autoload zed
 #エイリアス設定
 setopt complete_aliases     
 alias vi="vim"
+alias ptpython="ptpython --vi"
 alias where="command -v"
 alias j="jobs -l"
 case "${OSTYPE}" in
@@ -97,23 +98,18 @@ local DEFAULT=$'%{\e[0;m%}'
 
 PROMPT="$GREEN%n @ %m$DEFAULT %(!.#.$) "
 RPROMPT="[$PINK%~$DEFAULT]"
-## PROMPT内で変数展開・コマンド置換・算術演算を実行する
-#setopt prompt_subst
-### PROMPT内で「%」文字から始まる置換機能を有効にする
-#setopt prompt_percent
-### コピペしやすいようにコマンド実行後は右プロンプトを消す
-#setopt transient_rprompt
+#
 #PATHの重複を消す
 typeset -U path
 
-#os ex2.2
-#touch ~/.dir_history
-#function cd {
-#    builtin cd "$@"
-#    echo $PWD > ~/.dir_history
-#}
-#DIR=`cat ~/.dir_history`
-#cd $DIR
-
 #JPF
 JPF_HOME=~/Workspace/java/jpf/jpf-core
+
+# postgreSQL
+export PGDATA=/usr/local/var/postgres
+
+# pythonstartup
+export PYTHONSTARTUP=~/.pystartup
+
+#CbC_Clang
+export CbC_Clang="/Users/e125716/Workspace/CbC/build3_7/Debug+Asserts/bin"
