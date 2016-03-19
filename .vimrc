@@ -15,17 +15,16 @@ NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet' 
 NeoBundle "Shougo/neosnippet-snippets"
-NeoBundle 'Shougo/neocomplcache-rsense', {
-            \ 'autoload' : {
-            \     'filetypes' : ['ruby']
-            \ }}
-NeoBundle 'Shougo/vimproc', {
+NeoBundle 'Shougo/vimproc.vim', {
             \ 'build' : {
-            \     'windows' : 'make -f make_mingw64.mak',
+            \     'windows' : 'tools\\update-dll-mingw',
             \     'cygwin' : 'make -f make_cygwin.mak',
-            \     'mac' : 'make -f make_mac.mak',
-            \     'unix' : 'make -f make_unix.mak',
-            \ }}
+            \     'mac' : 'make',
+            \     'linux' : 'make',
+            \     'unix' : 'gmake',
+            \    },
+            \ }
+NeoBundle "osyo-manga/vim-monster"
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-ref'
@@ -68,9 +67,9 @@ nnoremap <silent> ,ug  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 
 " using ag for unite
 if executable('ag')
-  let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-  let g:unite_source_grep_recursive_opt = ''
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+    let g:unite_source_grep_recursive_opt = ''
 endif
 
 " ウィンドウを分割して開く
@@ -96,6 +95,15 @@ imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 "プレビュー
 set completeopt-=preview
+
+" monster
+" Set async completion.
+let g:monster#completion#rcodetools#backend = "async_rct_complete"
+
+" Use neocomplete.vim
+let g:neocomplete#sources#omni#input_patterns = {
+\   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+\}
 
 " vimshell setting
 let g:vimshell_interactive_update_time = 10
