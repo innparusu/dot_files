@@ -30,17 +30,12 @@ NeoBundle 'Shougo/vimshell'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-ref'
 NeoBundle "vim-scripts/gtags.vim"
-"NeoBundle 'vim-scripts/TwitVim'
-"NeoBundle 'Lokaltog/vim-powerline'
-"NeoBundle 'bling/vim-airline'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'dag/vim2hs'
 NeoBundle 'ujihisa/neco-ghc'
 NeoBundle 'tpope/vim-endwise'
-"NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'sophacles/vim-processing'
-"NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'open-browser.vim'
 NeoBundle 'derekwyatt/vim-scala'
@@ -68,6 +63,15 @@ nnoremap <silent> ,um :<C-u>Unite file_mru<CR>
 nnoremap <silent> ,uu :<C-u>Unite buffer file_mru<CR>
 " 全部乗せ
 nnoremap <silent> ,ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+" grep検索
+nnoremap <silent> ,ug  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+
+" using ag for unite
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
 
 " ウィンドウを分割して開く
 au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
@@ -80,7 +84,7 @@ au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
 
 " unite-grep keymap
-vnoremap ,g y:Unite grep::-iRn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
+vnoremap ,ug y:Unite grep::-iRn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
 
 " neocomplete
 let g:neocomplete#enable_at_startup = 1 " 起動時に有効化
@@ -101,35 +105,6 @@ nnoremap <silent> vs :VimShell<CR>
 nnoremap <silent> vsc :VimShellCreate<CR>
 nnoremap <silent> vp :VimShellPop<CR>
 
-" twitvim
-"let twitvim_count = 40
-"nnoremap ,tp :<C-u>PosttoTwitter<CR>
-"nnoremap ,tf :<C-u>FriendsTwitter<CR><C-w>j
-"nnoremap ,tu :<C-u>UserTwitter<CR><C-w>j
-"nnoremap ,tr :<C-u>RepliesTwitter<CR><C-w>j
-"nnoremap ,tn :<C-u>NextTwitter<CR>
-"
-"autocmd FileType twitvim call s:twitvim_my_settings()
-"function! s:twitvim_my_settings()
-"    set nowrap
-"endfunction
-
-" 辞書の設定
-" ref.vim の webdict の設定
-" FileTypeがtextならKでwebdictを使う
-autocmd FileType text call ref#register_detection('_', 'webdict') 
-" yahoo_dict と wikipedia を使う
-let g:ref_source_webdict_sites = {
-            \ 'yahoo_dict' : {'url' : 'http://dic.search.yahoo.co.jp/search?p=%s', 'line' : '47'},
-            \ 'wikipedia'  : {'url' : 'http://ja.wikipedia.org/wiki/%s',},}
-" webdict の辞書のデフォルトはyahoo_dict
-let g:ref_source_webdict_sites.default = 'yahoo_dict'
-" テキストブラウザはw3mを使う
-let g:ref_source_webdict_cmd = 'w3m -dump %s'
-
-"endwise.vim
-"let g:endwise_no_mappings=1
-"
 "syntastic
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=2
@@ -151,36 +126,11 @@ map <C-j> :GtagsCursor<CR>
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
 
-""vim-indent-guides
-"let g:indent_guides_enable_on_vim_startup=1
-"" ガイドをスタートするインデントの量
-"let g:indent_guides_start_level=1
-"" 自動カラーを無効にする
-"let g:indent_guides_auto_colors=0
-"" 奇数インデントのカラー
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=1
-"" 偶数インデントのカラー
-"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=4
-"" ガイドの幅
-"let g:indent_guides_guide_size = 1
-"" ガイド幅をインデント幅に合わせる
-""let g:indent_guides_guide_size = &tabstop
-
-
 filetype plugin on
 filetype indent on
 
 "色付け
 syntax on
-
-" 背景色を dark にする
-"set background=dark
-
-" 輝度を高くする
-"let g:solarized_visibility = "high"
-"
-" コントラストを高くする
-"let g:solarized_contrast = "high"
 
 " カラースキーマを Solarized にする
 colorscheme solarized
@@ -198,9 +148,6 @@ if has("autocmd")
                 \ endif
 endif
 
-"^oでオムニ補完
-"imap <C-o> <C-x><C-o>
-
 "パーシスタントundo
 if has('persistent_undo')
     set undodir=~/.vim/.vimundo
@@ -216,9 +163,6 @@ set viewoptions-=options
 autocmd BufNewFile *.tex 0r ~/.vim/templates/tex.tex "texのテンプレ
 autocmd BufNewFile *.sh 0r ~/.vim/templates/sh.sh "shのテンプレ
 autocmd BufNewFile *.py 0r ~/.vim/templates/python.py "pythonのテンプレ
-
-"texのファイル構成
-autocmd BufNewFile report.tex !cp ~/.vim/templates/Makefile ~/.vim/templates/jlisting.sty ./
 
 " ファイル名と内容によってファイルタイプを判別し、ファイルタイププラグインを有効にする
 filetype indent plugin on
@@ -262,9 +206,6 @@ set confirm
 
 " ビープの代わりにビジュアルベル（画面フラッシュ）を使う
 set visualbell
-
-" auto current directory
-set autochdir
 
 " そしてビジュアルベルも無効化する
 set t_vb=
