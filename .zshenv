@@ -1,5 +1,8 @@
+# not read /etc
+setopt no_global_rcs
+
 #パス設定
-export PATH=/usr/local/bin:$PATH
+eval `/usr/libexec/path_helper -s`
 export PATH=/usr/local/sbin:$PATH
 export PATH=$HOME/.cabal/bin:$PATH
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
