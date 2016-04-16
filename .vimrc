@@ -1,50 +1,40 @@
-" Vi互換モードをオフ（Vimの拡張機能を有効）
-set nocompatible
-filetype  off
-
-if has('vim_starting')
-    set nocompatible               " Be iMproved
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
+if &compatible
+    set nocompatible
 endif
+set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
+call dein#begin(expand('~/.vim/dein'))
 
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimfiler'
-NeoBundle 'Shougo/neocomplete'
-NeoBundle 'Shougo/neosnippet' 
-NeoBundle "Shougo/neosnippet-snippets"
-NeoBundle 'Shougo/vimproc.vim', {
-            \ 'build' : {
-            \     'windows' : 'tools\\update-dll-mingw',
-            \     'cygwin' : 'make -f make_cygwin.mak',
-            \     'mac' : 'make',
-            \     'linux' : 'make',
-            \     'unix' : 'gmake',
-            \    },
-            \ }
-NeoBundle "osyo-manga/vim-monster"
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'thinca/vim-ref'
-NeoBundle "vim-scripts/gtags.vim"
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'dag/vim2hs'
-NeoBundle 'ujihisa/neco-ghc'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'sophacles/vim-processing'
-NeoBundle 'kannokanno/previm'
-NeoBundle 'open-browser.vim'
-NeoBundle 'derekwyatt/vim-scala'
+call dein#add('Shougo/dein.vim')
 
+call dein#add('Shougo/unite.vim')
+call dein#add('Shougo/vimfiler')
+call dein#add('Shougo/neocomplete')
+call dein#add('Shougo/neosnippet' )
+call dein#add('Shougo/neosnippet-snippets')
+call dein#add('Shougo/vimproc.vim',{'build' : 'make'})
+call dein#add('osyo-manga/vim-monster')
+call dein#add('Shougo/vimshell')
+call dein#add('thinca/vim-quickrun')
+call dein#add('thinca/vim-ref')
+call dein#add('vim-scripts/gtags.vim')
+call dein#add('itchyny/lightline.vim')
+call dein#add('dag/vim2hs')
+call dein#add('ujihisa/neco-ghc')
+call dein#add('tpope/vim-endwise')
+call dein#add('tpope/vim-rails')
+call dein#add('sophacles/vim-processing')
+call dein#add('kannokanno/previm')
+call dein#add('open-browser.vim')
+call dein#add('derekwyatt/vim-scala')
 " coffee-scirptsyntax + 自動compile
-NeoBundle 'kchmck/vim-coffee-script'
+call dein#add('kchmck/vim-coffee-script')
 " カラースキーム
-"
-NeoBundle 'altercation/vim-colors-solarized'
-call neobundle#end()
+call dein#add('altercation/vim-colors-solarized')
+
+call dein#end()
+
+filetype plugin indent on
 
 
 "プラグイン系 設定
@@ -102,8 +92,8 @@ let g:monster#completion#rcodetools#backend = "async_rct_complete"
 
 " Use neocomplete.vim
 let g:neocomplete#sources#omni#input_patterns = {
-\   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
-\}
+            \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+            \}
 
 " vimshell setting
 let g:vimshell_interactive_update_time = 10
@@ -134,8 +124,6 @@ map <C-j> :GtagsCursor<CR>
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
 
-filetype plugin on
-filetype indent on
 
 "色付け
 syntax on
@@ -277,6 +265,3 @@ map Y y$
 
 " <C-L>で検索後の強調表示を解除す
 nnoremap <C-L> :nohl<CR><C-L>
-
-"ファイルタイプ設定をonにする
-filetype on
