@@ -257,6 +257,8 @@ au BufNewFile,BufRead *.scala set nowrap tabstop=2 shiftwidth=2 softtabstop=2
 au BufNewFile,BufRead *.feature set nowrap tabstop=2 shiftwidth=2 softtabstop=2
 au BufNewFile,BufRead *.php set nowrap tabstop=2 shiftwidth=2 softtabstop=2
 au BufNewFile,BufRead *.hs set nowrap tabstop=2 shiftwidth=2 softtabstop=2
+au BufNewFile,BufRead *.ex    set nowrap tabstop=2 shiftwidth=2 softtabstop=2
+au BufNewFile,BufRead *.exs    set nowrap tabstop=2 shiftwidth=2 softtabstop=2
 
 
 " マッピング
