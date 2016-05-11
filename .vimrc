@@ -27,6 +27,7 @@ call dein#add('sophacles/vim-processing')
 call dein#add('kannokanno/previm')
 call dein#add('open-browser.vim')
 call dein#add('derekwyatt/vim-scala')
+call dein#add('elixir-lang/vim-elixir')
 " coffee-scirptsyntax + 自動compile
 call dein#add('kchmck/vim-coffee-script')
 " カラースキーム
