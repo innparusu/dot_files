@@ -36,6 +36,7 @@ call dein#add('altercation/vim-colors-solarized')
 
 call dein#end()
 
+" ファイル名と内容によってファイルタイプを判別し、ファイルタイププラグインを有効にする
 filetype plugin indent on
 
 
@@ -64,15 +65,15 @@ if executable('ag')
     let g:unite_source_grep_recursive_opt = ''
 endif
 
-" ウィンドウを分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-au FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
-" ウィンドウを縦に分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-au FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
-" ESCキーを2回押すと終了する
-au FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
+augroup Unite
+    autocmd!
+    autocmd FileType unite nnoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+    autocmd FileType unite inoremap <silent> <buffer> <expr> <C-j> unite#do_action('split')
+    autocmd FileType unite nnoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+    autocmd FileType unite inoremap <silent> <buffer> <expr> <C-l> unite#do_action('vsplit')
+    autocmd FileType unite nnoremap <silent> <buffer> <ESC><ESC> q
+    autocmd FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
+augroup END
 
 " unite-grep keymap
 vnoremap ,ug y:Unite grep::-iRn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
@@ -90,8 +91,6 @@ set completeopt-=preview
 
 " monster
 " Set async completion.
-let g:monster#completion#rcodetools#backend = "async_rct_complete"
-
 " Use neocomplete.vim
 let g:neocomplete#sources#omni#input_patterns = {
             \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
@@ -138,32 +137,20 @@ set encoding=utf-8
 " 読み込みエンコーディング
 set fileencodings=utf-8,ucs-bom,iso-2022-jp-3,iso-2022-jp,eucjp-ms,euc-jisx0213,euc-jp,sjis,cp932
 
-" ファイルの前回閉じた時の場所を記憶
-if has("autocmd")
-    autocmd BufReadPost *
-                \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-                \   exe "normal! g'\"" |
-                \ endif
-endif
-
 "パーシスタントundo
 if has('persistent_undo')
     set undodir=~/.vim/.vimundo
     set undofile
 endif
 
-" 折りたたみ設定
-autocmd BufWritePost * if expand('%') != '' && &buftype !~ 'nofile' | mkview | endif
-autocmd BufRead * if expand('%') != '' && &buftype !~ 'nofile' | silent loadview | endif
-set viewoptions-=options
-
 "テンプレ設定
-autocmd BufNewFile *.tex 0r ~/.vim/templates/tex.tex "texのテンプレ
-autocmd BufNewFile *.sh 0r ~/.vim/templates/sh.sh "shのテンプレ
-autocmd BufNewFile *.py 0r ~/.vim/templates/python.py "pythonのテンプレ
+augroup Template
+    autocmd!
+    autocmd BufNewFile *.tex 0r ~/.vim/templates/tex.tex "texのテンプレ
+    autocmd BufNewFile *.sh 0r ~/.vim/templates/sh.sh "shのテンプレ
+    autocmd BufNewFile *.py 0r ~/.vim/templates/python.py "pythonのテンプレ
+augroup END
 
-" ファイル名と内容によってファイルタイプを判別し、ファイルタイププラグインを有効にする
-filetype indent plugin on
 
 " バッファを保存しなくても他のバッファを表示できるようにする
 set hidden
@@ -241,26 +228,22 @@ set expandtab
 " タブ文字を文字分の幅で表示する。
 set tabstop=4
 
-" vimにcoffeeファイルタイプを認識させる
-au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
-" インデントを設定
-autocmd FileType coffee     setlocal sw=2 sts=2 ts=2 et
-
-".rhtml, .rb, .erb, .haml .html .js .jade .feature .php .hsでタブ幅を2に変更
-au BufNewFile,BufRead *.rhtml set nowrap tabstop=2 shiftwidth=2 softtabstop=2
-au BufNewFile,BufRead *.rb    set nowrap tabstop=2 shiftwidth=2 softtabstop=2
-au BufNewFile,BufRead *.erb set nowrap tabstop=2 shiftwidth=2 softtabstop=2
-au BufNewFile,BufRead *.haml set nowrap tabstop=2 shiftwidth=2 softtabstop=2
-au BufNewFile,BufRead *.html set nowrap tabstop=2 shiftwidth=2 softtabstop=2
-au BufNewFile,BufRead *.scss set nowrap tabstop=2 shiftwidth=2 softtabstop=2
-au BufNewFile,BufRead *.js set nowrap tabstop=2 shiftwidth=2 softtabstop=2
-au BufNewFile,BufRead *.jade set nowrap tabstop=2 shiftwidth=2 softtabstop=2
-au BufNewFile,BufRead *.scala set nowrap tabstop=2 shiftwidth=2 softtabstop=2
-au BufNewFile,BufRead *.feature set nowrap tabstop=2 shiftwidth=2 softtabstop=2
-au BufNewFile,BufRead *.php set nowrap tabstop=2 shiftwidth=2 softtabstop=2
-au BufNewFile,BufRead *.hs set nowrap tabstop=2 shiftwidth=2 softtabstop=2
-au BufNewFile,BufRead *.ex    set nowrap tabstop=2 shiftwidth=2 softtabstop=2
-au BufNewFile,BufRead *.exs    set nowrap tabstop=2 shiftwidth=2 softtabstop=2
+augroup IndentSpace
+    autocmd!
+    autocmd FileType ruby    setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd FileType eruby setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd FileType haml setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd FileType html setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd FileType scss setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd FileType js setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd FileType scala setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd FileType cucumber setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd FileType php setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd FileType haskell setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd FileType elixir    setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd FileType exs    setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd FileType slim    setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
+augroup END
 
 
 " マッピング
