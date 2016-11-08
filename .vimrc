@@ -29,6 +29,7 @@ call dein#add('open-browser.vim')
 call dein#add('derekwyatt/vim-scala')
 call dein#add('elixir-lang/vim-elixir')
 call dein#add('slim-template/vim-slim')
+call dein#add('scrooloose/syntastic')
 " coffee-scirptsyntax + 自動compile
 call dein#add('kchmck/vim-coffee-script')
 " カラースキーム
@@ -104,10 +105,6 @@ nnoremap <silent> vs :VimShell<CR>
 nnoremap <silent> vsc :VimShellCreate<CR>
 nnoremap <silent> vp :VimShellPop<CR>
 
-"syntastic
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=2
-
 "lightline
 "colorschemeをsolarized
 let g:lightline = {
@@ -124,6 +121,13 @@ let g:quickrun_config.processing =  {
 map <C-j> :GtagsCursor<CR>
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
+
+"syntastic
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=2
+let g:syntastic_mode_map = { 'mode': 'active',
+            \ 'active_filetypes': ['ruby'] }
+let g:syntastic_ruby_checkers=['rubocop']
 
 
 "色付け
@@ -235,7 +239,7 @@ augroup IndentSpace
     autocmd FileType haml setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
     autocmd FileType html setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
     autocmd FileType scss setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
-    autocmd FileType js setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd FileType javascript setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
     autocmd FileType scala setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
     autocmd FileType cucumber setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
     autocmd FileType php setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
