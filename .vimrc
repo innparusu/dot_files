@@ -29,9 +29,12 @@ call dein#add('open-browser.vim')
 call dein#add('derekwyatt/vim-scala')
 call dein#add('elixir-lang/vim-elixir')
 call dein#add('slim-template/vim-slim')
-call dein#add('scrooloose/syntastic')
+" syntax checker
+call dein#add('neomake/neomake')
+call dein#add('benjie/neomake-local-eslint.vim')
 " coffee-scirptsyntax + 自動compile
 call dein#add('kchmck/vim-coffee-script')
+call dein#add('othree/yajs.vim')
 " カラースキーム
 call dein#add('altercation/vim-colors-solarized')
 
@@ -123,11 +126,13 @@ map <C-n> :cn<CR>
 map <C-p> :cp<CR>
 
 "syntastic
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=2
-let g:syntastic_mode_map = { 'mode': 'active',
-            \ 'active_filetypes': ['ruby'] }
-let g:syntastic_ruby_checkers=['rubocop']
+let g:neomake_ruby_enabled_makers=['rubocop']
+let g:neomake_scss_enabled_makers=['scsslint']
+let g:neomake_javascript_enabled_makers = ['eslint']
+augroup SyntaxCheck
+    autocmd!
+    autocmd BufWritePost * Neomake
+augroup END
 
 
 "色付け
