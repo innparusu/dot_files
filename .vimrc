@@ -237,24 +237,6 @@ set expandtab
 " タブ文字を文字分の幅で表示する。
 set tabstop=4
 
-augroup IndentSpace
-    autocmd!
-    autocmd FileType ruby    setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
-    autocmd FileType eruby setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
-    autocmd FileType haml setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
-    autocmd FileType html setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
-    autocmd FileType scss setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
-    autocmd FileType javascript setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
-    autocmd FileType scala setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
-    autocmd FileType cucumber setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
-    autocmd FileType php setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
-    autocmd FileType haskell setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
-    autocmd FileType elixir    setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
-    autocmd FileType exs    setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
-    autocmd FileType slim    setl nowrap tabstop=2 shiftwidth=2 softtabstop=2
-augroup END
-
-
 " マッピング
 " Yの動作をDやCと同じにする
 map Y y$
