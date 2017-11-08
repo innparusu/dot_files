@@ -25,7 +25,7 @@ call dein#add('tpope/vim-endwise')
 call dein#add('tpope/vim-rails')
 call dein#add('sophacles/vim-processing')
 call dein#add('kannokanno/previm')
-call dein#add('open-browser.vim')
+call dein#add('vimscripts/open-browser.vim')
 call dein#add('derekwyatt/vim-scala')
 call dein#add('elixir-lang/vim-elixir')
 call dein#add('slim-template/vim-slim')
@@ -125,10 +125,10 @@ map <C-j> :GtagsCursor<CR>
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
 
-"syntastic
+"neomake
 let g:neomake_ruby_enabled_makers=['rubocop']
 let g:neomake_scss_enabled_makers=['scsslint']
-let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_javascript_enabled_makers=['eslint']
 augroup SyntaxCheck
     autocmd!
     autocmd BufWritePost * Neomake
@@ -140,6 +140,7 @@ syntax on
 
 " カラースキーマを Solarized にする
 colorscheme solarized
+set background=light
 
 " エンコーディングをutf-8
 set encoding=utf-8
