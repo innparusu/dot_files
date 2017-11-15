@@ -24,7 +24,6 @@ set ruler                              " show ruler
 set laststatus=2                       " always show status line
 set visualbell t_vb=                   " disable bell
 "set number                            " show line number
-set notimeout ttimeout ttimeoutlen=200 " setting timeout
 
 " encoding utf-8 {{{
 set encoding=utf-8
@@ -63,9 +62,3 @@ map Y y$  " line yank
 nnoremap <C-L> :nohl<CR><C-L> " disable highlight search
 " }}}
 " }}}
-
-
-
-
-
-" <C-L>で検索後の強調表示を解除する

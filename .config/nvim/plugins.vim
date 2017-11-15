@@ -41,22 +41,9 @@ filetype plugin indent on
 
 " denite.vim {{{
 nnoremap <silent> ,ub :<C-u>Denite buffer<CR>
-nnoremap <silent> ,uf :<C-u>DeniteBufferDir -buffer-name=files file<CR>
-nnoremap <silent> ,ur :<C-u>Denite -buffer-name=register register<CR>
-nnoremap <silent> ,ug  :<C-u>Denite grep:. -buffer-name=search-buffer<CR>
-
-augroup Denite
-    autocmd!
-    autocmd FileType Denite nnoremap <silent> <buffer> <expr> <C-j> Denite#do_action('split')
-    autocmd FileType Denite inoremap <silent> <buffer> <expr> <C-j> Denite#do_action('split')
-    autocmd FileType Denite nnoremap <silent> <buffer> <expr> <C-l> Denite#do_action('vsplit')
-    autocmd FileType Denite inoremap <silent> <buffer> <expr> <C-l> Denite#do_action('vsplit')
-    autocmd FileType Denite nnoremap <silent> <buffer> <ESC><ESC> q
-    autocmd FileType Denite inoremap <silent> <buffer> <ESC><ESC> <ESC>q
-augroup END
-
-" unite-grep keymap
-vnoremap ,dg y:Dnite grep::-iRn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
+nnoremap <silent> ,uf :<C-u>DeniteBufferDir file<CR>
+nnoremap <silent> ,ur :<C-u>Denite register<CR>
+nnoremap <silent> ,ug  :<C-u>Denite grep:.<CR>
 " }}}
 
 " deoplete * neosnippet {{{
