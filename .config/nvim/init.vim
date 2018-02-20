@@ -15,7 +15,6 @@ set hidden                             " can show other buffer, if unsaved buffe
 set wildmenu                           " command line completion
 set showcmd                            " show type cmd
 set hlsearch                           " highlighting search
-set ignorecase                         " ignorecase serach
 set smartcase                          " not ignore case, if include upper char
 set backspace=indent,eol,start         " enable delete character by <BS>
 set background=light                   " set background

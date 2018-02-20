@@ -7,21 +7,14 @@ execute 'set runtimepath+=' . s:dein_path
 
 if dein#load_state(s:dein_path)
     call dein#begin(s:plugins_path)
-
     call dein#add('Shougo/dein.vim')
     call dein#add('Shougo/denite.nvim')
-
-    " deoplete & snippet
     call dein#add('Shougo/deoplete.nvim')
     call dein#add('Shougo/neosnippet' )
     call dein#add('Shougo/neosnippet-snippets')
-
-    " quickrun
     call dein#add('Shougo/vimproc.vim',{'build' : 'make'})
     call dein#add('thinca/vim-quickrun')
-
     call dein#add('vim-scripts/gtags.vim')
-    "call dein#add('itchyny/lightline.vim')
     call dein#add('neovimhaskell/haskell-vim')
     call dein#add('ujihisa/neco-ghc')
     call dein#add('tpope/vim-endwise')
@@ -41,30 +34,17 @@ filetype plugin indent on
 
 " denite.vim {{{
 nnoremap <silent> ,ub :<C-u>Denite buffer<CR>
-nnoremap <silent> ,uf :<C-u>DeniteBufferDir file<CR>
+nnoremap <silent> ,uf :<C-u>Denite file_rec<CR>
 nnoremap <silent> ,ur :<C-u>Denite register<CR>
 nnoremap <silent> ,ug  :<C-u>Denite grep:.<CR>
 " }}}
 
-" deoplete * neosnippet {{{
+" deoplete & neosnippet {{{
 let g:deoplete#enable_at_startup = 1
 " neosnippet mapping
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 " }}}
-
-" monster
-" Set async completion.
-" Use neocomplete.vim
-"let g:neocomplete#sources#omni#input_patterns = {
-"            \   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
-"            \}
-
-"lightline
-"colorschemeをsolarized
-"let g:lightline = {
-"            \ 'colorscheme' : 'solarized' ,
-"            \}
 
 "gtags.vim {{{
 map <C-j> :GtagsCursor<CR>
