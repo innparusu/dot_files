@@ -1,5 +1,5 @@
 #!/usr/local/bin/zsh
-export LANG=ja_JP.UTF-8
+export LANG=en_US.UTF-8
 
 case ${UID} in
 0)
@@ -7,13 +7,13 @@ case ${UID} in
     ;;
 esac
 
+## Use zsh-completions
+fpath=(/usr/local/share/zsh-completions $fpath)
 ## Default shell configuration
 # set prompt
 autoload colors
 colors
 ## Default shell configuration
-# auto change directory
-setopt auto_cd
 # auto directory pushd that you can get dirs list by cd -[tab]
 setopt auto_pushd
 # command correct edition before each completion attempt
@@ -24,6 +24,7 @@ setopt list_packed
 setopt noautoremoveslash
 # no beep sound when complete list displayed
 setopt nolistbeep
+
 bindkey -e
 bindkey "^[[1~" beginning-of-line # Home gets to line head
 bindkey "^[[4~" end-of-line # End gets to line end
@@ -105,11 +106,4 @@ typeset -U path
 #JPF
 JPF_HOME=~/Workspace/java/jpf/jpf-core
 
-# postgreSQL
-export PGDATA=/usr/local/var/postgres
-
-# pythonstartup
-export PYTHONSTARTUP=~/.pystartup
-
-#CbC_Clang
-export CbC_Clang="/Users/e125716/Workspace/CbC/build3_7/Debug+Asserts/bin"
+export EDITOR=vim
