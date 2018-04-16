@@ -8,7 +8,10 @@ case ${UID} in
 esac
 
 ## Use zsh-completions
-fpath=(/usr/local/share/zsh-completions $fpath)
+if [ -e /usr/local/share/zsh-completions ]; then
+    fpath=(/usr/local/share/zsh-completions $fpath)
+fi
+
 ## Default shell configuration
 # set prompt
 autoload colors
@@ -65,28 +68,28 @@ alias ptpython="ptpython --vi"
 alias where="command -v"
 alias j="jobs -l"
 case "${OSTYPE}" in
-freebsd*|darwin*)
-    alias ls="ls -G -w"
-    ;;
-linux*)
-    alias ls="ls --color"
-    ;;
+    freebsd*|darwin*)
+        alias ls="ls -G -w"
+        ;;
+    linux*)
+        alias ls="ls --color"
+        ;;
 esac
 
 ## terminal configuration
 case "${TERM}" in
-screen)
-    TERM=xterm
-    ;;
+    screen)
+        TERM=xterm
+        ;;
 esac
 
 # set terminal title including current directory
 case "${TERM}" in
-xterm|xterm-color|kterm|kterm-color)
-    precmd() {
-        echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
-    }
-    ;;
+    xterm|xterm-color|kterm|kterm-color)
+        precmd() {
+            echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
+        }
+        ;;
 esac
 
 export LSCOLORS=gxfxcxdxbxegedabagacad
