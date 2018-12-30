@@ -26,6 +26,8 @@ if dein#load_state(s:dein_path)
     call dein#add('benjie/neomake-local-eslint.vim')
     call dein#add('othree/yajs.vim')
     call dein#add('altercation/vim-colors-solarized')
+    call dein#add('posva/vim-vue')
+    call dein#add('thinca/vim-ref')
     call dein#end()
     call dein#save_state()
 endif
