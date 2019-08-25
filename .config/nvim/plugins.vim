@@ -28,6 +28,8 @@ if dein#load_state(s:dein_path)
     call dein#add('altercation/vim-colors-solarized')
     call dein#add('posva/vim-vue')
     call dein#add('thinca/vim-ref')
+    call dein#add('autozimu/LanguageClient-neovim', { 'build': './install.sh'})
+    call dein#add('tbodt/deoplete-tabnine', { 'rev': 'next', 'build': 'bash install.sh'})
     call dein#end()
     call dein#save_state()
 endif

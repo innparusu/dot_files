@@ -110,3 +110,5 @@ typeset -U path
 JPF_HOME=~/Workspace/java/jpf/jpf-core
 
 export EDITOR=vim
+eval "$(direnv hook zsh)"
+source <(kubectl completion zsh)

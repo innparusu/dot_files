@@ -17,4 +17,4 @@ export GOPATH=$HOME/.go
 export PGDATA=/usr/local/var/postgres
 
 #rbenv
-eval "$(rbenv init -)"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
