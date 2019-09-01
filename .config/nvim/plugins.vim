@@ -30,6 +30,8 @@ if dein#load_state(s:dein_path)
     call dein#add('thinca/vim-ref')
     call dein#add('autozimu/LanguageClient-neovim', { 'build': './install.sh'})
     call dein#add('tbodt/deoplete-tabnine', { 'rev': 'next', 'build': 'bash install.sh'})
+    call dein#add('kassio/neoterm')
+    call dein#add('Jagua/vim-denite-ghq')
     call dein#end()
     call dein#save_state()
 endif
@@ -38,9 +40,28 @@ filetype plugin indent on
 
 " denite.vim {{{
 nnoremap <silent> ,ub :<C-u>Denite buffer<CR>
-nnoremap <silent> ,uf :<C-u>Denite file_rec<CR>
+nnoremap <silent> ,uf :<C-u>Denite file/rec<CR>
 nnoremap <silent> ,ur :<C-u>Denite register<CR>
 nnoremap <silent> ,ug  :<C-u>Denite grep:.<CR>
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR>
+  \ denite#do_map('do_action')
+  nnoremap <silent><buffer><expr> d
+  \ denite#do_map('do_action', 'delete')
+  nnoremap <silent><buffer><expr> p
+  \ denite#do_map('do_action', 'preview')
+  nnoremap <silent><buffer><expr> q
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> i
+  \ denite#do_map('open_filter_buffer')
+  nnoremap <silent><buffer><expr> <Space>
+  \ denite#do_map('toggle_select').'j'
+  nnoremap <silent><buffer><expr> vsp
+  \ denite#do_map('do_action', 'vsplit')
+  nnoremap <silent><buffer><expr> sp
+  \ denite#do_map('do_action', 'split')
+endfunction
 " }}}
 
 " deoplete & neosnippet {{{
@@ -69,3 +90,14 @@ augroup END
 " colorscheme {{{
 colorscheme solarized
 " }}}
+
+"{{{ neoterm
+let g:neoterm_default_mod=':botright'
+let g:neoterm_autoscroll=1
+let g:neoterm_autoinsert=1
+nnoremap <c-t><c-t> :Ttoggle<CR>
+tnoremap <c-t><c-t> <C-\><C-n>:Ttoggle<CR>
+tnoremap <ESC> <C-\><C-n>
+nmap gx <Plug>(neoterm-repl-send)
+xmap gx <Plug>(neoterm-repl-send)
+"}}}
