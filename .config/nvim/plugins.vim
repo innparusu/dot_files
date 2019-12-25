@@ -69,3 +69,7 @@ let g:fzf_action = {
 let g:fzf_buffers_jump = 1
 let g:fzf_layout = { 'down': '~30%' }
 "}}}
+
+"{{{ coc
+let g:coc_global_extensions = ['coc-solargraph']
+"}}}
