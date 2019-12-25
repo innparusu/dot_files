@@ -92,7 +92,7 @@ case "${TERM}" in
         ;;
 esac
 
-export LSCOLORS=gxfxcxdxbxegedabagacad
+export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS='di=36:ln=35:so=32:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 export PTEX_IN_FILTER=/usr/local/bin/nkf
 
@@ -112,3 +112,8 @@ JPF_HOME=~/Workspace/java/jpf/jpf-core
 export EDITOR=vim
 eval "$(direnv hook zsh)"
 source <(kubectl completion zsh)
+
+if [ -f ~/.fzf.zsh ]; then
+    source ~/.fzf.zsh
+    export FZF_TMUX=1
+fi

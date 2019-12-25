@@ -17,7 +17,6 @@ set showcmd                            " show type cmd
 set hlsearch                           " highlighting search
 set smartcase                          " not ignore case, if include upper char
 set backspace=indent,eol,start         " enable delete character by <BS>
-set background=light                   " set background
 set nostartofline                      " below move the cursor to the current
 set ruler                              " show ruler
 set laststatus=2                       " always show status line
@@ -59,5 +58,4 @@ set softtabstop=4
 " keymap {{{{
 map Y y$  " line yank
 nnoremap <C-L> :nohl<CR><C-L> " disable highlight search
-" }}}
 " }}}
