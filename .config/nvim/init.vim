@@ -21,7 +21,7 @@ set nostartofline                      " below move the cursor to the current
 set ruler                              " show ruler
 set laststatus=2                       " always show status line
 set visualbell t_vb=                   " disable bell
-"set number                            " show line number
+set number                            " show line number
 
 " encoding utf-8 {{{
 set encoding=utf-8

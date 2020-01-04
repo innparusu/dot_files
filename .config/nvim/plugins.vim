@@ -9,11 +9,10 @@ if dein#load_state(s:dein_path)
     call dein#begin(s:plugins_path)
     call dein#add('Shougo/dein.vim')
     call dein#add('neoclide/coc.nvim', {'rev': 'release'})
-    call dein#add('Shougo/vimproc.vim',{'build' : 'make'})
     call dein#add('thinca/vim-quickrun')
     call dein#add('vim-scripts/gtags.vim')
     call dein#add('neovimhaskell/haskell-vim')
-    call dein#add('ujihisa/neco-ghc')
+    call dein#add('uujihisa/neco-ghc')
     call dein#add('tpope/vim-endwise')
     call dein#add('tpope/vim-rails')
     call dein#add('derekwyatt/vim-scala')
@@ -26,7 +25,6 @@ if dein#load_state(s:dein_path)
     call dein#add('posva/vim-vue')
     call dein#add('thinca/vim-ref')
     call dein#add('kassio/neoterm')
-    call dein#add('Jagua/vim-denite-ghq')
     call dein#add('tpope/vim-fugitive')
     call dein#add('airblade/vim-gitgutter')
     call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 }) " If install using Homebrew
@@ -45,6 +43,14 @@ map <C-p> :cp<CR>
 
 " colorscheme {{{
 colorscheme github
+" }}}
+
+" neomake {{{
+let g:neomake_ruby_enabled_makers=['rubocop']
+let g:neomake_scss_enabled_makers=['scsslint']
+let g:neomake_javascript_enabled_makers=['eslint']
+let g:neomake_typescript_enabled_makers=['tslint']
+call neomake#configure#automake('w')
 " }}}
 
 "{{{ neoterm
@@ -71,5 +77,10 @@ let g:fzf_layout = { 'down': '~30%' }
 "}}}
 
 "{{{ coc
-let g:coc_global_extensions = ['coc-solargraph']
+let g:coc_global_extensions = ['coc-solargraph', 'coc-tabnine', 'coc-snippets']
+"}}}
+
+"{{{ coc-snippets
+imap <C-k> <Plug>(coc-snippets-expand-jump)
+smap <C-k> <Plug>(coc-snippets-expand-jump)
 "}}}
