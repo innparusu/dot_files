@@ -124,3 +124,9 @@ if [ -f ~/.fzf.zsh ]; then
     zle     -N     fzf-history-widget-accept
     bindkey '^X^R' fzf-history-widget-accept
 fi
+
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"

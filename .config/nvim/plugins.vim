@@ -12,7 +12,7 @@ if dein#load_state(s:dein_path)
     call dein#add('thinca/vim-quickrun')
     call dein#add('vim-scripts/gtags.vim')
     call dein#add('neovimhaskell/haskell-vim')
-    call dein#add('uujihisa/neco-ghc')
+    call dein#add('eagletmt/neco-ghc')
     call dein#add('tpope/vim-endwise')
     call dein#add('tpope/vim-rails')
     call dein#add('derekwyatt/vim-scala')
@@ -21,7 +21,7 @@ if dein#load_state(s:dein_path)
     call dein#add('neomake/neomake') " syntax checker
     call dein#add('benjie/neomake-local-eslint.vim')
     call dein#add('othree/yajs.vim')
-    call dein#add('cormacrelf/vim-colors-github')
+    call dein#add('chriskempson/base16-vim')
     call dein#add('posva/vim-vue')
     call dein#add('thinca/vim-ref')
     call dein#add('kassio/neoterm')
@@ -42,7 +42,10 @@ map <C-p> :cp<CR>
 " }}}
 
 " colorscheme {{{
-colorscheme github
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
 " }}}
 
 " neomake {{{
