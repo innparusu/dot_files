@@ -116,4 +116,11 @@ source <(kubectl completion zsh)
 if [ -f ~/.fzf.zsh ]; then
     source ~/.fzf.zsh
     export FZF_TMUX=1
+
+    fzf-history-widget-accept() {
+      fzf-history-widget
+      zle accept-line
+    }
+    zle     -N     fzf-history-widget-accept
+    bindkey '^X^R' fzf-history-widget-accept
 fi

@@ -55,7 +55,7 @@ set shiftwidth=4
 set softtabstop=4
 " }}}
 
-" keymap {{{{
+" keymap {{{
 map Y y$  " line yank
 nnoremap <C-L> :nohl<CR><C-L> " disable highlight search
 " }}}
