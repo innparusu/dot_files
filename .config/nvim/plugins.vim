@@ -29,6 +29,11 @@ if dein#load_state(s:dein_path)
     call dein#add('airblade/vim-gitgutter')
     call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 }) " If install using Homebrew
     call dein#add('junegunn/fzf.vim')
+    call dein#add('leafgarland/typescript-vim')
+    call dein#add('peitalin/vim-jsx-typescript')
+    call dein#add('gavocanov/vim-js-indent')
+    call dein#add('tpope/vim-cucumber')
+    call dein#add('chr15m/vim-gherkin')
     call dein#end()
     call dein#save_state()
 endif
@@ -80,7 +85,7 @@ let g:fzf_layout = { 'down': '~30%' }
 "}}}
 
 "{{{ coc
-let g:coc_global_extensions = ['coc-solargraph', 'coc-tabnine', 'coc-snippets']
+call coc#add_extension('coc-solargraph', 'coc-tabnine', 'coc-snippets', 'coc-tsserver', 'coc-css', 'coc-go')
 "}}}
 
 "{{{ coc-snippets

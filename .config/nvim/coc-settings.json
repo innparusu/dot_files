@@ -1,3 +1,6 @@
 {
-    "solargraph.completion": true
+    "solargraph.completion": true,
+    "go.goplsOptions": {
+        "completeUnimported": true
+    }
 }
