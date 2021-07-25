@@ -111,7 +111,9 @@ JPF_HOME=~/Workspace/java/jpf/jpf-core
 
 export EDITOR=vim
 eval "$(direnv hook zsh)"
-source <(kubectl completion zsh)
+if [ -x kubectl ]; then
+  source <(kubectl completion zsh)
+fi
 
 if [ -f ~/.fzf.zsh ]; then
     source ~/.fzf.zsh
