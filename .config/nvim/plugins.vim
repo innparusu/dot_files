@@ -34,6 +34,8 @@ if dein#load_state(s:dein_path)
     call dein#add('gavocanov/vim-js-indent')
     call dein#add('tpope/vim-cucumber')
     call dein#add('chr15m/vim-gherkin')
+    call dein#add('github/copilot.vim')
+    call dein#add('hashivim/vim-terraform')
     call dein#end()
     call dein#save_state()
 endif
@@ -85,7 +87,7 @@ let g:fzf_layout = { 'down': '~30%' }
 "}}}
 
 "{{{ coc
-call coc#add_extension('coc-solargraph', 'coc-tabnine', 'coc-snippets', 'coc-tsserver', 'coc-css', 'coc-go')
+call coc#add_extension('coc-solargraph', 'coc-tabnine', 'coc-snippets', 'coc-tsserver', 'coc-css', 'coc-go', 'coc-copilot')
 "}}}
 
 "{{{ coc-snippets

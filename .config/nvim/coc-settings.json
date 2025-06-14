@@ -2,5 +2,15 @@
     "solargraph.completion": true,
     "go.goplsOptions": {
         "completeUnimported": true
+    },
+    "languageserver": {
+        "sorbet": {
+            "command": "srb",
+            "args": ["tc", "--enable-all-experimental-lsp-features", "--lsp"],
+            "filetypes": ["ruby"],
+            "rootPatterns": ["sorbet/config"],
+            "initializationOptions": {},
+            "settings": {}
+        }
     }
 }

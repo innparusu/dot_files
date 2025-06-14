@@ -15,6 +15,8 @@ export PATH=$HOME/bin:$PATH
 export GOPATH=$HOME/.go
 # postgreSQL
 export PGDATA=/usr/local/var/postgres
+export PATH="/opt/homebrew/bin:$PATH"
+export GPG_TTY=$(tty)
 
 #rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
