@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 ln -s $(PWD)/.zshrc ~/.zshrc
 ln -s $(PWD)/.zshenv ~/.zshenv
-ln -s $(PWD)/.zprofile ~/.zprofile
 ln -s $(PWD)/.tmux.conf ~/.tmux.conf
 ln -s $(PWD)/.config/nvim ~/.config/
